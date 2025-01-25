@@ -82,12 +82,7 @@ const NavbarButtons: React.FC = () => {
                             LogOut
                         </button>
                     </Link>
-
-                    <Link href="/prueba">
-                        <button className="bg-gradient-to-r from-indigo-950 via-gray-800 to-purple-950 opacity-90 hover:text-orange-400 text-white font-extrabold py-2 px-4 rounded-2xl border-r-5 transition duration-300 ease-in-out">
-                            Prueba
-                        </button>
-                    </Link>
+                    
                 </>
             )}
         </div>
