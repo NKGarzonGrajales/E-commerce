@@ -23,3 +23,11 @@ body {
         -webkit-text-stroke: 1px black;
     }
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+}

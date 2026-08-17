@@ -1,9 +1,9 @@
 "use client";
 
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Card from "../Card/Card";
-import {getProducts} from "@/app/api/productAPI";
-import {IProduct} from "@/interfaces/types";
+import { getProducts } from "@/app/api/productAPI";
+import { IProduct } from "@/interfaces/types";
 
 const CardList: React.FC = () => {
     const [products, setProducts] = useState<IProduct[]>([]);
@@ -26,15 +26,29 @@ const CardList: React.FC = () => {
         fetchProducts();
     }, []);
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>{error}</p>;
+    if (loading) {
+        return (
+            <p className="text-center py-10 text-[#6B7775]">
+                Loading products...
+            </p>
+        );
+    }
+
+    if (error) {
+        return (
+            <p className="text-center py-10 text-red-600">
+                {error}
+            </p>
+        );
+    }
 
     return (
-        <div className="w-full px-6 py-3 mr-10 bg-[#dbdcec] justify-items-center">
-            <h1 className="text-4xl font-bold text-center text-gray-900 mb-8">Products</h1>
-            <div className="bg-[#dbdcec] rounded-lg grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-                {products.map((product, index) => (
-                    <Card key={product.id} {...product} index={index} />
+        <div className="w-full">
+            
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {products.map((product) => (
+                    <Card key={product.id} {...product} />
                 ))}
             </div>
         </div>
