@@ -24,7 +24,7 @@ const slides: Slide[] = [
             </>
         ),
         description:
-            "Discover premium tech products designed to elevate your everyday.",
+            "Discover premium tech products designed\nto elevate your everyday.",
         button: "Explore products",
         buttonColor: "bg-[#0F766E] hover:bg-[#115E59]",
     },
@@ -160,7 +160,7 @@ const Carousel = () => {
                             </h2>
 
                             {/* Description */}
-                            <p className="mt-6 max-w-md text-sm md:text-base leading-relaxed text-white/80">
+                            <p className="mt-6 max-w-md text-sm md:text-base leading-relaxed text-white/80 whitespace-pre-line">
                                 {slide.description}
                             </p>
 
