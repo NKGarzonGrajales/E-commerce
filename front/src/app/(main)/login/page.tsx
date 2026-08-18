@@ -33,7 +33,7 @@ const Login = () => {
                 iconColor: "green",
                 title: "login successful",
             });
-            router.push("/home");
+            router.push("/");
         } catch (error) {
             Toast.fire({
                 icon: "error",

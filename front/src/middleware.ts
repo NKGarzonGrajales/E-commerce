@@ -6,7 +6,7 @@ export function middleware(request: NextRequest) {
     const {pathname, origin} = request.nextUrl;
 
     if (
-        (pathname.includes("dashboard") || pathname.includes("cart") || pathname.includes("home") || pathname.includes("prueba")) &&
+        (pathname.includes("dashboard") || pathname.includes("cart") || pathname.includes("prueba")) &&
         !request.cookies.get("userData")?.value
     ) {
         const loginURL = new NextURL("/login", origin);

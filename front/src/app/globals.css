@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-    --background: #ffffff;
-    --foreground: #1e0c01;
+    --background: #F7F8F6;
+    --foreground: #172023;
 }
 
 * {
@@ -13,21 +15,19 @@
     box-sizing: border-box;
 }
 
+html,
 body {
-    font-family: "Arial", sans-serif;
-    background-color: #dbdcec;
+    min-height: 100%;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #F7F8F6;
+    color: #172023;
 }
 
 @layer utilities {
     .text-stroke-black {
         -webkit-text-stroke: 1px black;
     }
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-@layer base {
-  body {
-    font-family: 'Inter', sans-serif;
-  }
 }
