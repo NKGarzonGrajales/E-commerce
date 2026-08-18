@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../Card/Card";
 import { getProducts } from "@/app/api/productAPI";
 import { IProduct } from "@/interfaces/types";
@@ -15,10 +15,10 @@ const CardList: React.FC = () => {
             try {
                 const data = await getProducts();
                 setProducts(data);
-                setLoading(false);
             } catch (err) {
                 console.error("Error fetching products:", err);
-                setError("Error fetching products");
+                setError("Unable to load products.");
+            } finally {
                 setLoading(false);
             }
         };
@@ -28,7 +28,7 @@ const CardList: React.FC = () => {
 
     if (loading) {
         return (
-            <p className="text-center py-10 text-[#6B7775]">
+            <p className="py-10 text-center text-[#6B7775]">
                 Loading products...
             </p>
         );
@@ -36,7 +36,7 @@ const CardList: React.FC = () => {
 
     if (error) {
         return (
-            <p className="text-center py-10 text-red-600">
+            <p className="py-10 text-center text-red-600">
                 {error}
             </p>
         );
@@ -44,11 +44,12 @@ const CardList: React.FC = () => {
 
     return (
         <div className="w-full">
-            
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
                 {products.map((product) => (
-                    <Card key={product.id} {...product} />
+                    <Card
+                        key={product.id}
+                        {...product}
+                    />
                 ))}
             </div>
         </div>

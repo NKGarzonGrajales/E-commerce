@@ -1,170 +1,284 @@
 "use client";
 
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+
+interface Slide {
+    image: string;
+    eyebrow: string;
+    title: React.ReactNode;
+    description: string;
+    button: string;
+    buttonColor: string;
+}
+
+const slides: Slide[] = [
+    {
+        image: "/images/carousel-main3.webp",
+        eyebrow: "PREMIUM TECHNOLOGY",
+        title: (
+            <>
+                Technology
+                <br />
+                that <span className="text-[#0F766E]">inspires.</span>
+            </>
+        ),
+        description:
+            "Discover premium tech products designed to elevate your everyday.",
+        button: "Explore products",
+        buttonColor: "bg-[#0F766E] hover:bg-[#115E59]",
+    },
+    {
+        image: "/images/carousel-laptop3.webp",
+        eyebrow: "BUILT FOR PERFORMANCE",
+        title: (
+            <>
+                Power.
+                <br />
+                Performance.
+                <br />
+                <span className="text-[#0F766E]">Progress.</span>
+            </>
+        ),
+        description:
+            "High-performance technology designed to keep you moving forward.",
+        button: "Explore laptops",
+        buttonColor: "bg-[#0F766E] hover:bg-[#115E59]",
+    },
+    {
+        image: "/images/carousel-smartphone3.webp",
+        eyebrow: "MADE TO CONNECT",
+        title: (
+            <>
+                Innovation
+                <br />
+                in every
+                <br />
+                <span className="text-[#6B8F85]">detail.</span>
+            </>
+        ),
+        description:
+            "Smart technology that fits perfectly into your life.",
+        button: "Explore smartphones",
+        buttonColor: "bg-[#0F766E] hover:bg-[#115E59]",
+    },
+    {
+        image: "/images/carousel-headphones3.webp",
+        eyebrow: "SOUND THAT INSPIRES",
+        title: (
+            <>
+                Sound that
+                <br />
+                <span className="text-[#A87845]">moves you.</span>
+            </>
+        ),
+        description:
+            "Experience every beat with exceptional clarity.",
+        button: "Explore headphones",
+        buttonColor: "bg-[#A87845] hover:bg-[#8F6539]",
+    },
+    {
+        image: "/images/carousel-smartwatch3.webp",
+        eyebrow: "ALWAYS BY YOUR SIDE",
+        title: (
+            <>
+                Smarter.
+                <br />
+                Faster.
+                <br />
+                Always <span className="text-[#D97757]">connected.</span>
+            </>
+        ),
+        description:
+            "Stay in control of your day, every day.",
+        button: "Explore smartwatches",
+        buttonColor: "bg-[#D97757] hover:bg-[#C45F42]",
+    },
+];
 
 const Carousel = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
+    const totalSlides = slides.length;
+
     const handlePrev = () => {
-        setCurrentIndex((prevIndex) => (prevIndex - 1 + 3) % 3);
+        setCurrentIndex(
+            (prevIndex) => (prevIndex - 1 + totalSlides) % totalSlides
+        );
     };
 
     const handleNext = () => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % 3);
+        setCurrentIndex(
+            (prevIndex) => (prevIndex + 1) % totalSlides
+        );
     };
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentIndex((prevIndex) => (prevIndex + 1) % 3);
-        }, 3000);
+            setCurrentIndex(
+                (prevIndex) => (prevIndex + 1) % totalSlides
+            );
+        }, 4500);
 
         return () => clearInterval(interval);
-    }, []);
+    }, [totalSlides]);
+
+    const slide = slides[currentIndex];
 
     return (
-        <div>
-            <div
-                id="carouselDarkVariant"
-                className="relative w-[70%] mt-10 mx-auto"
-                data-twe-carousel-init
-                data-twe-ride="carousel"
-            >
-                <div
-                    className="absolute inset-x-0 bottom-0 z-[2] mx-[5%] mb-2 flex list-none justify-center p-1"
-                    data-twe-carousel-indicators
+        <div className="relative w-full overflow-hidden rounded-3xl">
+
+            {/* Slide */}
+            <div className="relative w-full aspect-[16/6] overflow-hidden">
+
+                {/* Product Image */}
+                <Image
+                    src={slide.image}
+                    alt={slide.button}
+                    fill
+                    priority={currentIndex === 0}
+                    sizes="(max-width: 768px) 100vw, 1200px"
+                    className="object-cover object-center transition-opacity duration-700"
+                />
+
+                {/* Readability Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+
+                {/* Content */}
+                <div className="absolute inset-0 flex items-center">
+                    <div className="w-full px-10 md:px-14 lg:px-20">
+                        <div className="max-w-xl">
+
+                            {/* Eyebrow */}
+                            <p className="mb-4 text-xs md:text-sm font-semibold tracking-[0.2em] text-white/75">
+                                {slide.eyebrow}
+                            </p>
+
+                            {/* Main heading */}
+                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.05] tracking-tight text-white">
+                                {slide.title}
+                            </h2>
+
+                            {/* Description */}
+                            <p className="mt-6 max-w-md text-sm md:text-base leading-relaxed text-white/80">
+                                {slide.description}
+                            </p>
+
+                            {/* CTA */}
+                            <button
+                                type="button"
+                                className={`
+                                    mt-8
+                                    inline-flex
+                                    items-center
+                                    gap-3
+                                    rounded-xl
+                                    px-5
+                                    py-3
+                                    text-sm
+                                    font-semibold
+                                    text-white
+                                    shadow-lg
+                                    transition-all
+                                    duration-300
+                                    hover:-translate-y-0.5
+                                    active:scale-95
+                                    ${slide.buttonColor}
+                                `}
+                            >
+                                {slide.button}
+
+                                <span
+                                    aria-hidden="true"
+                                    className="text-lg leading-none"
+                                >
+                                    →
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Previous button */}
+                <button
+                    type="button"
+                    onClick={handlePrev}
+                    aria-label="Previous slide"
+                    className="
+                        absolute
+                        left-4
+                        top-1/2
+                        z-20
+                        flex
+                        h-10
+                        w-10
+                        -translate-y-1/2
+                        items-center
+                        justify-center
+                        rounded-full
+                        bg-black/25
+                        text-white
+                        backdrop-blur-sm
+                        transition-all
+                        hover:bg-black/45
+                    "
                 >
-                    {[0, 1, 2].map((index) => (
+                    <span className="text-3xl leading-none">
+                        ‹
+                    </span>
+                </button>
+
+                {/* Next button */}
+                <button
+                    type="button"
+                    onClick={handleNext}
+                    aria-label="Next slide"
+                    className="
+                        absolute
+                        right-4
+                        top-1/2
+                        z-20
+                        flex
+                        h-10
+                        w-10
+                        -translate-y-1/2
+                        items-center
+                        justify-center
+                        rounded-full
+                        bg-black/25
+                        text-white
+                        backdrop-blur-sm
+                        transition-all
+                        hover:bg-black/45
+                    "
+                >
+                    <span className="text-3xl leading-none">
+                        ›
+                    </span>
+                </button>
+
+                {/* Indicators */}
+                <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2">
+                    {slides.map((_, index) => (
                         <button
                             key={index}
-                            data-twe-target="#carouselDarkVariant"
-                            data-twe-slide-to={index}
-                            className={`mx-[8px] h-[8px] w-[70px] cursor-pointer ${
-                                index === currentIndex ? "bg-white opacity-100" : "bg-gray-950 opacity-50"
-                            }`}
-                            aria-label={`Slide ${index + 1}`}
+                            type="button"
                             onClick={() => setCurrentIndex(index)}
+                            aria-label={`Go to slide ${index + 1}`}
+                            className={`
+                                h-2.5
+                                rounded-full
+                                transition-all
+                                duration-300
+                                ${
+                                    index === currentIndex
+                                        ? "w-8 bg-[#0F766E]"
+                                        : "w-2.5 bg-white/70 hover:bg-white"
+                                }
+                            `}
                         />
                     ))}
                 </div>
-
-                <div className="relative w-full h-[40vh] overflow-hidden">
-                    <div
-                        className={`relative flex w-full transition-opacity duration-[600ms] ease-in-out ${
-                            currentIndex === 0 ? "block" : "hidden"
-                        }`}
-                    >
-                        <Image
-                            src="/images/Smartwatches1.png"
-                            alt="All in One Place, looking ahead the future!"
-                            width={1500}
-                            height={600}
-                            style={{objectFit: "cover", width: "100%", height: "100%"}}
-                            className="rounded-lg max-h-[60vh] opacity-60"
-                            priority
-                        />
-                        <div className="absolute inset-x-10 top-2 py-10 text-center md:block bg-transparent bg-opacity-50 p-8 z-10">
-                            <h5 className="text-8xl font-bold text-red-700 text-stroke-black hover:font-serif">
-                                Seen It Cheaper?
-                            </h5>
-                            <p className="text-7xl mt-14 text-white text-stroke-black font-sans hover:uppercase underline decoration-white ">
-                                Best Prices and Deals!
-                            </p>
-                        </div>
-                    </div>
-
-                    <div
-                        className={`relative float-left w-full transition-opacity duration-[600ms] ease-in-out ${
-                            currentIndex === 1 ? "block" : "hidden"
-                        }`}
-                    >
-                        <Image
-                            src="/images/laptops.png"
-                            alt="Laptops universe"
-                            width={1500}
-                            height={600}
-                            style={{objectFit: "cover", width: "100%", height: "100%"}}
-                            className="block w-full max-h-[45vh] opacity-75"
-                        />
-                        <div className="absolute inset-x-10 top-2 py-10 md:block bg-transparent bg-opacity-50 p-8 z-10">
-                            <h5 className="text-8xl font-bold text-yellow-600 text-stroke-black decoration-wavy hover:font-serif text-center">
-                                Love Tech?
-                            </h5>
-                            <p className="text-7xl mt-14 mr-[-40] text-zinc-50 bg-gray-600 opacity-70 font-sans hover:font-serif underline">
-                                The latest laptops and gear for devs!😊
-                            </p>
-                        </div>
-                    </div>
-
-                    <div
-                        className={`relative float-left w-full transition-opacity duration-[600ms] ease-in-out ${
-                            currentIndex === 2 ? "block" : "hidden"
-                        }`}
-                    >
-                        <Image
-                            src="/images/Smartphones1.png"
-                            alt="Latest tech welcome image "
-                            width={1500}
-                            height={600}
-                            style={{objectFit: "cover", width: "100%", height: "100%"}}
-                            className="rounded-lg max-h-[95vh] opacity-70"
-                        />
-                        <div className="absolute inset-x-10 top-2 py-10 text-center md:block bg-transparent bg-opacity-50 p-8 z-10">
-                            <h5 className="text-8xl font-bold text-zinc-950 text-stroke-white hover:font-serif">
-                                Need more info!
-                            </h5>
-                            <p className="text-7xl font-extrabold mt-14 text-gray-200 font-sans  hover:uppercase text-stroke-black">
-                                Buy it now!
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <button
-                    className="absolute left-0 top-0 z-[50] w-[25%] h-full text-black opacity-60 hover:opacity-90"
-                    type="button"
-                    onClick={handlePrev}
-                >
-                    <span className="inline-block h-  9 w-9 dark:grayscale">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            className="h-9 w-9"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={1.5}
-                                d="M15.75 19.5L8.25 12l7.5-7.5"
-                            />
-                        </svg>
-                    </span>
-                </button>
-
-                <button
-                    className="absolute right-0 top-0 z-[50] w-[15%] h-full text-black opacity-50 hover:opacity-90"
-                    type="button"
-                    onClick={handleNext}
-                >
-                    <span className="inline-block h-9 w-9 dark:grayscale">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            className="h-9 w-9"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={1.5}
-                                d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                            />
-                        </svg>
-                    </span>
-                </button>
             </div>
         </div>
     );

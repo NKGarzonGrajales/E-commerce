@@ -60,7 +60,7 @@ const Home: React.FC = () => {
                 </div>
 
                 {/* Product Grid */}
-                <div className="bg-[#ebf1ee] p-8 rounded-3xl shadow-sm border border-[#DDE5E1]">
+                <div className="bg-[#EEF3F0] p-8 rounded-3xl shadow-sm border border-[#DDE5E1]">
                     <CardList />
                 </div>
             </section>

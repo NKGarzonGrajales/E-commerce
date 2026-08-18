@@ -5,7 +5,7 @@ import { IProduct } from "@/interfaces/types";
 
 const Card: React.FC<IProduct> = ({ id, name, image, price }) => {
     return (
-        <div className="group bg-white rounded-2xl border border-[#DDE5E1] p-5 shadow-sm hover:shadow-xl hover:border-[#0F766E]/40 transition-all duration-300 flex flex-col justify-between">
+        <div className="group bg-white rounded-2xl border border-[#DDE5E1] p-5 shadow-sm hover:shadow-lg hover:border-[#0F766E]/40 transition-all duration-300 flex flex-col justify-between">
             
             {/* Product Image */}
             <div className="relative w-full h-52 mb-4 overflow-hidden rounded-xl bg-[#F7F8F6] flex items-center justify-center">
@@ -30,7 +30,7 @@ const Card: React.FC<IProduct> = ({ id, name, image, price }) => {
 
                     <Link
                         href={`/product/${id}`}
-                        className="px-4 py-2 text-xs font-semibold tracking-wide text-white bg-[#0F766E] rounded-xl hover:bg-[#115E59] active:scale-95 transition-all shadow-sm"
+                        className="px-4 py-2 text-xs font-semibold tracking-wide text-white bg-[#0F766E] rounded-xl hover:bg-[#115E59] active:scale-95 transition-all shadow-sm whitespace-nowrap"
                     >
                         See more
                     </Link>
