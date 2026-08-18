@@ -129,7 +129,7 @@ const Carousel = () => {
         <div className="relative w-full overflow-hidden rounded-3xl">
 
             {/* Slide */}
-            <div className="relative w-full aspect-[16/6] overflow-hidden">
+            <div className="relative w-full aspect-[4/5] overflow-hidden sm:aspect-[16/9] lg:aspect-[16/6]">
 
                 {/* Product Image */}
                 <Image
@@ -146,21 +146,21 @@ const Carousel = () => {
 
                 {/* Content */}
                 <div className="absolute inset-0 flex items-center">
-                    <div className="w-full px-10 md:px-14 lg:px-20">
+                    <div className="w-full px-6 sm:px-10 md:px-14 lg:px-20">
                         <div className="max-w-xl">
 
                             {/* Eyebrow */}
-                            <p className="mb-4 text-xs md:text-sm font-semibold tracking-[0.2em] text-white/75">
+                            <p className="mb-2 sm:mb-4 text-xs md:text-sm font-semibold tracking-[0.2em] text-white/75">
                                 {slide.eyebrow}
                             </p>
 
                             {/* Main heading */}
-                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.05] tracking-tight text-white">
+                            <h2 className="text-3xl md:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.05] tracking-tight text-white">
                                 {slide.title}
                             </h2>
 
                             {/* Description */}
-                            <p className="mt-6 max-w-md text-sm md:text-base leading-relaxed text-white/80 whitespace-pre-line">
+                            <p className="mt-4 sm:mt-6 max-w-md text-sm md:text-base leading-relaxed text-white/80 whitespace-pre-line">
                                 {slide.description}
                             </p>
 
@@ -168,7 +168,7 @@ const Carousel = () => {
                             <button
                                 type="button"
                                 className={`
-                                    mt-8
+                                    mt-5 sm:mt-8
                                     inline-flex
                                     items-center
                                     gap-3
@@ -258,7 +258,7 @@ const Carousel = () => {
                 </button>
 
                 {/* Indicators */}
-                <div className="absolute bottom-6 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2">
+                <div className="absolute bottom-3 sm:bottom-6 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2">
                     {slides.map((_, index) => (
                         <button
                             key={index}
