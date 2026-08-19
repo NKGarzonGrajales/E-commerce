@@ -1,15 +1,18 @@
 "use client";
 
-import {Toast} from "@/helpers";
-import {IProduct} from "../../interfaces/types";
+import { Toast } from "@/helpers";
+import { IProduct } from "../../interfaces/types";
 import Cookies from "js-cookie";
-
-const MAX_QUANTITY = 1;
+import { useCartStore } from "@/store/useCartStore";
+import { useRouter } from "next/navigation";
 
 const AddToCart: React.FC<IProduct> = (props) => {
-    const userData = JSON.parse(Cookies.get("userData") || "{}");
+    const router = useRouter();
+    const addToCart = useCartStore((state) => state.addToCart);
 
     const handleClick = () => {
+        const userData = JSON.parse(Cookies.get("userData") || "{}");
+
         if (!userData.token) {
             Toast.fire({
                 icon: "info",
@@ -17,46 +20,24 @@ const AddToCart: React.FC<IProduct> = (props) => {
                 title: "You must be logged to add products",
             });
         } else {
-            const cart: IProduct[] = JSON.parse(localStorage.getItem("cart") || "[]");
+            const response = addToCart(props);
 
-            const productIndex = cart.findIndex((item) => item.id === props.id);
-
-            if (productIndex !== -1) {
-                if (cart[productIndex].quantity! < MAX_QUANTITY) {
-                    cart[productIndex].quantity! += 1;
-                    Toast.fire({
-                        icon: "success",
-                        iconColor: "green",
-                        title: "You have added another unit to the cart",
-                    }).then(() => {
-                        window.location.href = "/cart";
-                    });
-                } else {
-                    Toast.fire({
-                        icon: "warning",
-                        iconColor: "orange",
-                        title: `You can only add up to ${MAX_QUANTITY} units of this product`,
-                    });
+            Toast.fire({
+                icon: response.type,
+                iconColor: response.type === "success" ? "green" : "orange",
+                title: response.message,
+            }).then(() => {
+                if (response.success) {
+                    router.push("/cart");
                 }
-            } else {
-                cart.push({...props, quantity: 1});
-                Toast.fire({
-                    icon: "success",
-                    iconColor: "green",
-                    title: "You have added a product to the cart",
-                }).then(() => {
-                    window.location.href = "/cart";
-                });
-            }
-
-            localStorage.setItem("cart", JSON.stringify(cart));
+            });
         }
     };
 
     return (
         <button
             onClick={handleClick}
-            className="bg-indigo-600 flex gap-2 items-center text-white px-6 py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            className="bg-indigo-600 flex gap-2 items-center text-white px-6 py-2 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors"
         >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
