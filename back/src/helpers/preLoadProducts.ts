@@ -30,17 +30,17 @@ const productsToPreLoad: IProduct[] = [
       "The Sony WH-1000XM5 now feature two processors inside the headphones to process information from eight distinct microphones. These mics are used to provide better noise cancellation in the mid-to-high frequencies. These are the Sony HD Noise Cancelling Processor Q1 and the Integrated Processor V1 which was also present in the Sony WF-1000XM4 TWS earbuds.",
     image:
       "https://images.indianexpress.com/2022/05/Sony-WH-1000XM5-.jpg",
-    categoryId: 2,
+    categoryId: 4,
     stock: 10,
   },
   {
-    name: "Macbook pro with m3 chip Laptop",
-    price: 3499,
+    name: "13-inch MacBook Pro",
+    price: 3197,
     description:
-      "The new MacBook Pro with the M3 chip features a 14.2-inch Liquid Retina XDR display, an 8-core CPU (4 performance cores and 4 efficiency cores), and a 10-core GPU1. It offers up to 22 hours of battery life, 16GB of unified memory, and 512GB or 1TB of SSD storage. The MacBook Pro also includes a backlit Magic Keyboard, Thunderbolt/USB 4 ports, and support for Wi-Fi 6E.",
+      "The new M2 chip makes the 13‑inch MacBook Pro more capable than ever. The same compact design supports up to 20 hours of battery life1 and an active cooling system to sustain enhanced performance. Featuring a brilliant Retina display, a FaceTime HD camera, and studio‑quality mics, it’s our most portable pro laptop",
     image:
-      "https://myghsr.com/wp-content/uploads/2023/10/Apple-New-MacBook-Pro-with-M3-Chips.webp",
-    categoryId: 3,
+      "https://res.cloudinary.com/ekeza2li/image/upload/v1787188836/Macbook_Pro.jpg",
+    categoryId: 2,
     stock: 10,
   },
   {
@@ -50,7 +50,7 @@ const productsToPreLoad: IProduct[] = [
       "The Apple Watch Series 9 features a 1.9-inch Retina LTPO OLED display, the powerful Apple S9 chip, and up to 64GB of storage. It includes health monitoring tools like ECG, heart rate tracking, and temperature sensing, plus a battery life of up to 18 hours. Its also dust resistant (IP6X) and water resistant up to 50 meters.",
     image:
       "https://m.media-amazon.com/images/I/61DZ+Vezk0L._AC_SX342_SY445_.jpg",
-    categoryId: 4,
+    categoryId: 10,
     stock: 10,
   },
   {
@@ -60,7 +60,7 @@ const productsToPreLoad: IProduct[] = [
         "The Amazon Echo (4th Gen) is a smart speaker with premium sound, featuring a spherical design and built-in Alexa. It offers rich audio, smart home hub capabilities, and voice control for music, lights, and more. It's available in multiple colors and supports multi-room music.",
       image:
         "https://m.media-amazon.com/images/I/81t8gScXClL._AC_SL1500_.jpg",
-      categoryId: 5,
+      categoryId: 11,
       stock: 10,
   },
   {
@@ -70,7 +70,7 @@ const productsToPreLoad: IProduct[] = [
         "Gaming Monitor, IPS UHD(3840 * 2160P) 144Hz Monitors, Computer Monitor Support Free Sync, HDR, DCI-P3 97%, 1.07B Color Depth, with HDMI 2.0/DP 1.4 and Built-in Speaker, Support Wall- Black.",
       image:
         "https://m.media-amazon.com/images/I/71wYxDXBN9L.__AC_SX300_SY300_QL70_FMwebp_.jpg",
-      categoryId: 6,
+      categoryId: 7,
       stock: 10,
   },
 ];
