@@ -1,6 +1,6 @@
 import {IProduct} from "@/interfaces/types";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3004";
 
 export async function getProducts(): Promise<IProduct[]> {
     try {
