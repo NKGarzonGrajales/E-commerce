@@ -4,7 +4,7 @@ import React from "react";
 
 const Home: React.FC = () => {
     return (
-        <main className="min-h-screen bg-[#F7F8F6] text-[#172023] pb-24">
+        <main className=" bg-[#F7F8F6] text-[#172023] pb-16">
 
             {/* Hero / Carousel */}
             <section className="max-w-7xl mx-auto px-6 mt-8">

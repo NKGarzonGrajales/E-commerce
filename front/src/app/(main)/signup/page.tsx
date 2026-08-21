@@ -83,7 +83,7 @@ const Signup = () => {
 
     return (
         <div className="flex flex-col items-center text-center mt-16 text-3xl">
-            <h1 className="mb-6 text-stone-600 font-bold text-stroke-black">Signup into NidZone3 online store</h1>
+            <h1 className="mb-6 text-stone-600 font-bold text-stroke-black">Signup into NidZone online store</h1>
 
             <form
                 onSubmit={handleSubmit}

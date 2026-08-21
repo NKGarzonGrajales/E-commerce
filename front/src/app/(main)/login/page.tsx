@@ -59,7 +59,7 @@ const Login = () => {
 
     return (
         <div className="flex flex-col items-center text-center mt-20 text-3xl">
-            <h1 className="mb-8 text-stone-600 font-bold text-stroke-black">Sign up at NidZone3 online store</h1>
+            <h1 className="mb-8 text-stone-600 font-bold text-stroke-black">Sign up at NidZone online store</h1>
 
             <form
                 onSubmit={handleSubmit}
