@@ -129,7 +129,7 @@ const Carousel = () => {
         <div className="relative w-full overflow-hidden rounded-3xl">
 
             {/* Slide */}
-            <div className="relative w-full aspect-[4/5] overflow-hidden sm:aspect-[16/9] lg:aspect-[16/6]">
+            <div className="relative w-full aspect-[4/3] overflow-hidden sm:aspect-[16/9] lg:aspect-[16/6]">
 
                 {/* Product Image */}
                 <Image
@@ -155,7 +155,7 @@ const Carousel = () => {
                             </p>
 
                             {/* Main heading */}
-                            <h2 className="text-3xl md:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.05] tracking-tight text-white">
+                            <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-[1.05] tracking-tight text-white">
                                 {slide.title}
                             </h2>
 
@@ -207,20 +207,16 @@ const Carousel = () => {
                     className="
                         absolute
                         left-4
-                        top-1/2
+                        top-1/2 
                         z-20
                         flex
-                        h-10
-                        w-10
                         -translate-y-1/2
                         items-center
                         justify-center
-                        rounded-full
-                        bg-black/25
-                        text-white
-                        backdrop-blur-sm
-                        transition-all
-                        hover:bg-black/45
+                        text-white  
+                        sm:left-4
+                        sm:h-10
+                        sm:w-10
                     "
                 >
                     <span className="text-3xl leading-none">
@@ -239,17 +235,13 @@ const Carousel = () => {
                         top-1/2
                         z-20
                         flex
-                        h-10
-                        w-10
                         -translate-y-1/2
                         items-center
                         justify-center
-                        rounded-full
-                        bg-black/25
                         text-white
-                        backdrop-blur-sm
-                        transition-all
-                        hover:bg-black/45
+                        sm:right-4
+                        sm:h-10
+                        sm:w-10
                     "
                 >
                     <span className="text-3xl leading-none">
@@ -266,14 +258,13 @@ const Carousel = () => {
                             onClick={() => setCurrentIndex(index)}
                             aria-label={`Go to slide ${index + 1}`}
                             className={`
-                                h-2.5
                                 rounded-full
                                 transition-all
                                 duration-300
                                 ${
                                     index === currentIndex
-                                        ? "w-8 bg-[#0F766E]"
-                                        : "w-2.5 bg-white/70 hover:bg-white"
+                                        ? "w-2 h-2 bg-[#0F766E]"
+                                        : "w-2 h-2 bg-white/70 hover:bg-white"
                                 }
                             `}
                         />
