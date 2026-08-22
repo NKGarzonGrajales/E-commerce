@@ -5,10 +5,10 @@ import { IProduct } from "@/interfaces/types";
 
 const Card: React.FC<IProduct> = ({ id, name, image, price }) => {
     return (
-        <div className="group bg-white rounded-2xl border border-[#DDE5E1] p-5 shadow-sm hover:shadow-lg hover:border-[#0F766E]/40 transition-all duration-300 flex flex-col justify-between">
+        <div className="group flex flex-col justify-between rounded-2xl border border-[#DDE5E1] bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#0F766E]/40 hover:shadow-lg">
             
             {/* Product Image */}
-            <div className="relative w-full h-52 mb-4 overflow-hidden rounded-xl bg-[#F7F8F6] flex items-center justify-center">
+            <div className="relative w-full h-56 mb-5 overflow-hidden rounded-xl bg-[#F7F8F6] flex items-center justify-center">
                 <Image
                     src={image}
                     alt={name}
@@ -24,7 +24,7 @@ const Card: React.FC<IProduct> = ({ id, name, image, price }) => {
                 </h3>
 
                 <div className="mt-auto flex items-center justify-between pt-3 border-t border-[#DDE5E1]">
-                    <span className="text-lg font-bold text-[#172023]">
+                    <span className="text-xl font-bold text-[#172023]">
                         ${price}
                     </span>
 
