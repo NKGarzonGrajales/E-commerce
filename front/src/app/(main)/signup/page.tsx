@@ -82,15 +82,17 @@ const Signup = () => {
     }, [userData, touched]);
 
     return (
-        <div className="flex flex-col items-center text-center mt-16 text-3xl">
-            <h1 className="mb-6 text-stone-600 font-bold text-stroke-black">Signup into NidZone online store</h1>
+        <div className="flex flex-col items-center text-center mt-16 text-[#172023]">
+            <h1 className="mb-6 text-3xl font-bold tracking-tight text-[#172023]">
+                Create your NidZone account
+            </h1>
 
             <form
                 onSubmit={handleSubmit}
-                className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md border border-b-orange-300 mt-10 mb-20"
+                className="bg-white p-8 rounded-2xl shadow-sm w-full max-w-md border border-[#DDE5E1] mt-10 mb-20"
             >
                 <div className="mb-5">
-                    <label className="block text-gray-700 text-lg font-bold mb-2" htmlFor="email_address">
+                    <label className="block text-[#42545A] text-base font-semibold mb-2" htmlFor="email_address">
                         Email:
                     </label>
                     <input
@@ -100,13 +102,13 @@ const Signup = () => {
                         value={userData.email}
                         placeholder="emailname@example.com"
                         onChange={handleChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-300"
+                        className="w-full rounded-xl border border-[#DDE5E1] bg-[#F8FAF9] px-3 py-2.5 text-[#172023] placeholder:text-[#899491] outline-none transition focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/10"
                     />
-                    {touched && errors.email && <span className="text-red-600 text-sm">{errors.email}</span>}
+                    {touched && errors.email && <span className="mt-1 block text-sm text-red-600">{errors.email}</span>}
                 </div>
 
                 <div className="mb-5">
-                    <label className="block text-gray-700 text-lg font-bold mb-2" htmlFor="password">
+                    <label className="block text-[#42545A] text-base font-semibold mb-2" htmlFor="password">
                         Password:
                     </label>
                     <input
@@ -116,13 +118,13 @@ const Signup = () => {
                         value={userData.password}
                         placeholder="A123b45"
                         onChange={handleChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-300"
+                        className="w-full rounded-xl border border-[#DDE5E1] bg-[#F8FAF9] px-3 py-2.5 text-[#172023] placeholder:text-[#899491] outline-none transition focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/10"
                     />
-                    {touched && errors.password && <span className="text-red-600 text-sm">{errors.password}</span>}
+                    {touched && errors.password && <span className="mt-1 block text-sm text-red-600">{errors.password}</span>}
                 </div>
 
                 <div className="mb-5">
-                    <label className="block text-gray-700 text-lg font-bold mb-2" htmlFor="name">
+                    <label className="block text-[#42545A] text-base font-semibold mb-2" htmlFor="name">
                         Name:
                     </label>
                     <input
@@ -132,13 +134,13 @@ const Signup = () => {
                         value={userData.name}
                         placeholder="Adele Thor"
                         onChange={handleChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-300"
+                        className="w-full rounded-xl border border-[#DDE5E1] bg-[#F8FAF9] px-3 py-2.5 text-[#172023] placeholder:text-[#899491] outline-none transition focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/10"
                     />
-                    {touched && errors.name && <span className="text-red-600 text-sm">{errors.name}</span>}
+                    {touched && errors.name && <span className="mt-1 block text-sm text-red-600">{errors.name}</span>}
                 </div>
 
                 <div className="mb-5">
-                    <label className="block text-gray-700 text-lg font-bold mb-2" htmlFor="address">
+                    <label className="block text-[#42545A] text-base font-semibold mb-2" htmlFor="address">
                         Address:
                     </label>
                     <input
@@ -148,13 +150,13 @@ const Signup = () => {
                         value={userData.address}
                         placeholder="Town, Country"
                         onChange={handleChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-300"
+                        className="w-full rounded-xl border border-[#DDE5E1] bg-[#F8FAF9] px-3 py-2.5 text-[#172023] placeholder:text-[#899491] outline-none transition focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/10"
                     />
-                    {touched && errors.address && <span className="text-red-600 text-sm">{errors.address}</span>}
+                    {touched && errors.address && <span className="mt-1 block text-sm text-red-600">{errors.address}</span>}
                 </div>
 
                 <div className="mb-5">
-                    <label className="block text-gray-700 text-lg font-bold mb-2" htmlFor="phone">
+                    <label className="block text-[#42545A] text-base font-semibold mb-2" htmlFor="phone">
                         Phone:
                     </label>
                     <input
@@ -164,15 +166,15 @@ const Signup = () => {
                         value={userData.phone}
                         placeholder="571234567"
                         onChange={handleChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-300"
+                        className="w-full rounded-xl border border-[#DDE5E1] bg-[#F8FAF9] px-3 py-2.5 text-[#172023] placeholder:text-[#899491] outline-none transition focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/10"
                     />
-                    {touched && errors.phone && <span className="text-red-600 text-sm">{errors.phone}</span>}
+                    {touched && errors.phone && <span className="mt-1 block text-sm text-red-600">{errors.phone}</span>}
                 </div>
 
                 <button
                     disabled={!isFormValid}
                     type="submit"
-                    className="w-full bg-gray-900 hover:bg-zinc-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
+                    className="w-full rounded-xl bg-[#D97757] px-4 py-2.5 font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#C46348] hover:shadow-md active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-[#D97757]/20 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                     Sign Up
                 </button>

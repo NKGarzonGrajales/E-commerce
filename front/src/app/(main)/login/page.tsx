@@ -58,15 +58,15 @@ const Login = () => {
     }, [userData]);
 
     return (
-        <div className="flex flex-col items-center text-center mt-20 text-3xl">
-            <h1 className="mb-8 text-stone-600 font-bold text-stroke-black">Sign up at NidZone online store</h1>
+        <div className="flex flex-col items-center text-center mt-16 text-[#172023]">
+            <h1 className="mb-8 text-3xl font-bold tracking-tight text-[#172023]">Sign in to NidZone</h1>
 
             <form
                 onSubmit={handleSubmit}
-                className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md border border-b-orange-300 mb-20"
+                className="mb-20 w-full max-w-md rounded-2xl border border-[#DDE5E1] bg-white p-8 shadow-sm"
             >
                 <div className="mb-5">
-                    <label className="block text-gray-700 text-lg font-bold mb-2" htmlFor="email_address">
+                    <label className="mb-2 block text-base font-semibold text-[#42545A]" htmlFor="email_address">
                         Email:
                     </label>
                     <input
@@ -76,13 +76,13 @@ const Login = () => {
                         value={userData.email}
                         placeholder="emailname@example.com"
                         onChange={handleChange}
-                        className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-300"
+                        className="w-full rounded-xl border border-[#DDE5E1] bg-[#F8FAF9] px-3 py-2.5 text-[#172023] placeholder:text-[#899491] outline-none transition focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/10"
                     />
                     {errors.email && <span className="text-red-600 text-sm">{errors.email}</span>}
                 </div>
 
                 <div className="flex flex-col gap-2 mb-5">
-                    <label className="block text-gray-700 text-lg font-bold mb-2" htmlFor="password">
+                    <label className="mb-2 block text-base font-semibold text-[#42545A]" htmlFor="password">
                         Password:
                     </label>
                     <div className="relative flex items-center">
@@ -93,12 +93,12 @@ const Login = () => {
                             value={userData.password}
                             placeholder="********"
                             onChange={handleChange}
-                            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-300"
+                            className="w-full rounded-xl border border-[#DDE5E1] bg-[#F8FAF9] px-3 py-2.5 text-[#172023] placeholder:text-[#899491] outline-none transition focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/10"
                         />
                         <button
                             type="button"
                             onClick={() => setVisible(!visible)}
-                            className="absolute right-2 text-gray-500"
+                            className="absolute right-3 text-[#6B7775] transition-colors hover:text-[#0F766E]"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -121,7 +121,7 @@ const Login = () => {
                 </div>
                 <button
                     type="submit"
-                    className="w-full bg-gray-900 hover:bg-zinc-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline"
+                    className="w-full rounded-xl bg-[#0F766E] px-4 py-2.5 font-semibold text-white shadow-sm transition-all duration-200 hover:bg-[#115E59] hover:shadow-md active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-[#0F766E]/20"
                 >
                     Sign In
                 </button>
