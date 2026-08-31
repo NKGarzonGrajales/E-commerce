@@ -13,7 +13,7 @@ const checkLogin = async (req: Request, res: Response, next: NextFunction) => {
     const decoded = jwt.verify(token, JWT_SECRET) as { userId: number };
     req.body.userId = decoded.userId;
   } catch (error) {
-    next(new ClientError("Invalid token"));
+    return next(new ClientError("Invalid token", 401));
   }
   console.log("Token Check OK");
 
