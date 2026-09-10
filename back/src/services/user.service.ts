@@ -1,6 +1,7 @@
 import LoginUserDto from "../dtos/loginUser.dto";
 import RegisterUserDto from "../dtos/registerUser.dto";
 import { User } from "../entities/User";
+import { UserResponseDto } from "../dtos/userResponse.dto";
 import { UserRepository } from "../repositories/user.repository";
 import { ClientError } from "../utils/errors";
 import {
@@ -10,6 +11,15 @@ import {
 import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "../config/envs";
 
+const toUserResponse = (user: User): UserResponseDto => ({
+  id: user.id,
+  name: user.name,
+  email: user.email,
+  address: user.address,
+  phone: user.phone,
+  role: user.role,
+});
+
 export const checkUserExists = async (email: string): Promise<boolean> => {
   const user = await UserRepository.findOneBy({ email });
   return !!user;
@@ -17,7 +27,7 @@ export const checkUserExists = async (email: string): Promise<boolean> => {
 
 export const registerUserService = async (
   registerUserDto: RegisterUserDto
-): Promise<User> => {
+): Promise<UserResponseDto> => {
   const user = await UserRepository.create(registerUserDto);
   await UserRepository.save(user);
   const credential = await createCredentialService({
@@ -25,12 +35,13 @@ export const registerUserService = async (
   });
   user.credential = credential;
   await UserRepository.save(user);
-  return user;
+
+  return toUserResponse(user);
 };
 
 export const loginUserService = async (
   loginUserDto: LoginUserDto
-): Promise<{ token: string; user: User }> => {
+): Promise<{ token: string; user: UserResponseDto }> => {
   const user: User | null = await UserRepository.findOne({
     where: {
       email: loginUserDto.email,
@@ -44,7 +55,7 @@ export const loginUserService = async (
     const token = jwt.sign({ userId: user.id }, JWT_SECRET);
 
     return {
-      user,
+      user: toUserResponse(user),
       token,
     };
   } else {

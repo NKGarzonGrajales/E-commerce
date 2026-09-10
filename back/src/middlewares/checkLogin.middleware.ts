@@ -4,9 +4,16 @@ import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "../config/envs";
 
 const checkLogin = async (req: Request, res: Response, next: NextFunction) => {
-  const token = req.headers.authorization;
-  if (!token) {
-    return next(new ClientError("Token is required"));
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader) {
+    return next(new ClientError("Token is required", 401));
+  }
+
+  const [scheme, token] = authHeader.split(" ");
+
+  if (scheme !== "Bearer" || !token) {
+    return next(new ClientError("Invalid authorization header", 401));
   }
 
   try {
@@ -15,6 +22,7 @@ const checkLogin = async (req: Request, res: Response, next: NextFunction) => {
   } catch (error) {
     return next(new ClientError("Invalid token", 401));
   }
+
   console.log("Token Check OK");
 
   next();

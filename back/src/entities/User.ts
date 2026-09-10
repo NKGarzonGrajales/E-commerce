@@ -2,7 +2,7 @@ import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn
 import { Credential } from "./Credential";
 import { Order } from "./Order";
 
-enum Role {
+export enum Role {
     ADMIN = "admin",
     USER = "user"
 }
