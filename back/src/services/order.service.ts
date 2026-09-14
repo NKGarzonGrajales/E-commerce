@@ -5,7 +5,8 @@ import { ProductRepository } from "../repositories/product.repository";
 import { UserRepository } from "../repositories/user.repository";
 
 export const createOrderService = async (
-  createOrderDto: CreateOrderDto
+  createOrderDto: CreateOrderDto,
+  userId: number
 ): Promise<Order> => {
   const productsF = [];
 
@@ -15,7 +16,7 @@ export const createOrderService = async (
     productsF.push(product);
   }
 
-  const userF = await UserRepository.findOneBy({ id: createOrderDto.userId });
+  const userF = await UserRepository.findOneBy({ id: userId });
   if (!userF) throw new Error("User not found");
 
   const newOrder = OrderRepository.create();
