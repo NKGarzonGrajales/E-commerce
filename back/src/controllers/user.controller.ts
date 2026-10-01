@@ -3,6 +3,7 @@ import { catchedController } from "../utils/catchedController";
 import {
   loginUserService,
   registerUserService,
+  getUserOrdersService,
 } from "../services/user.service";
 
 export const registerUser = catchedController(
@@ -28,3 +29,11 @@ export const login = catchedController(async (req: Request, res: Response) => {
     token: user.token,
   });
 });
+
+export const getUserOrders = catchedController(
+  async (req: Request, res: Response) => {
+    const userId = req.user!.id;
+    const orders = await getUserOrdersService(userId);
+    res.status(200).send(orders);
+  }
+);

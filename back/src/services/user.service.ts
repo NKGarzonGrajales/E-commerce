@@ -10,6 +10,7 @@ import {
 } from "./credential.service";
 import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "../config/envs";
+import { OrderRepository } from "../repositories/order.repository";
 
 const toUserResponse = (user: User): UserResponseDto => ({
   id: user.id,
@@ -61,4 +62,11 @@ export const loginUserService = async (
   } else {
     throw new ClientError("Invalid password");
   }
+};
+
+export const getUserOrdersService = async (userId: number) => {
+  return await OrderRepository.find({
+    relations: ["products"],
+    where: { user: { id: userId } },
+  });
 };
