@@ -20,6 +20,13 @@ const validateOrderFields = (
       new ClientError("Order must have at least one item")
     );
   }
+
+  if (!products.every((id: unknown) => Number.isInteger(id))) {
+    return next(
+      new ClientError("Product IDs must be integers")
+    );
+  }
+  
   next();
 };
 
