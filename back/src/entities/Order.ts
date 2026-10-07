@@ -10,15 +10,28 @@ import {
 import { User } from "./User";
 import { Product } from "./Product";
 
-// status: pending, approved, rejected
+// status: pending, approved, rejected etc...
+export enum OrderStatus {
+  PENDING = "pending",
+  CONFIRMED = "confirmed",
+  PROCESSING = "processing",
+  SHIPPED = "shipped",
+  DELIVERED = "delivered",
+  CANCELLED = "cancelled",
+  REFUNDED = "refunded",
+}
 
 @Entity({ name: "orders" })
 export class Order {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  status: string;
+@Column({
+  type: "enum",
+  enum: OrderStatus,
+  default: OrderStatus.PENDING,
+})
+status: OrderStatus;
 
   @Column()
   date: Date;

@@ -1,5 +1,5 @@
 import { CreateOrderDto } from "../dtos/createOrderDto";
-import { Order } from "../entities/Order";
+import { Order, OrderStatus } from "../entities/Order";
 import { OrderRepository } from "../repositories/order.repository";
 import { ProductRepository } from "../repositories/product.repository";
 import { UserRepository } from "../repositories/user.repository";
@@ -21,7 +21,7 @@ export const createOrderService = async (
 
   const newOrder = OrderRepository.create();
 
-  newOrder.status = "approved";
+  newOrder.status = OrderStatus.PENDING;
   newOrder.date = new Date();
   newOrder.user = userF;
   newOrder.products = productsF;
