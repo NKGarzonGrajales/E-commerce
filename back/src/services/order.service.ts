@@ -1,31 +1,58 @@
+import { AppDataSource } from "../config/dataSource";
 import { CreateOrderDto } from "../dtos/createOrderDto";
 import { Order, OrderStatus } from "../entities/Order";
-import { OrderRepository } from "../repositories/order.repository";
-import { ProductRepository } from "../repositories/product.repository";
-import { UserRepository } from "../repositories/user.repository";
+import { OrderItem } from "../entities/OrderItem";
+import { Product } from "../entities/Product";
+import { User } from "../entities/User";
 
 export const createOrderService = async (
   createOrderDto: CreateOrderDto,
   userId: number
 ): Promise<Order> => {
-  const productsF = [];
+  return await AppDataSource.transaction(async (manager) => {
+    const user = await manager.findOneBy(User, { id: userId });
 
-  for await (const id of createOrderDto.products) {
-    const product = await ProductRepository.findOneBy({ id });
-    if (!product) throw new Error("Product not found");
-    productsF.push(product);
-  }
+    if (!user) {
+      throw new Error("User not found");
+    }
 
-  const userF = await UserRepository.findOneBy({ id: userId });
-  if (!userF) throw new Error("User not found");
+    const orderItems: OrderItem[] = [];
 
-  const newOrder = OrderRepository.create();
+    for (const id of createOrderDto.products) {
+      const product = await manager
+        .getRepository(Product)
+        .createQueryBuilder("product")
+        .setLock("pessimistic_write")
+        .where("product.id = :id", { id })
+        .getOne();
 
-  newOrder.status = OrderStatus.PENDING;
-  newOrder.date = new Date();
-  newOrder.user = userF;
-  newOrder.products = productsF;
+      if (!product) {
+        throw new Error("Product not found");
+      }
 
-  await OrderRepository.save(newOrder);
-  return newOrder;
+      if (product.stock < 1) {
+        throw new Error(`Insufficient stock for product ${id}`);
+      }
+
+      product.stock -= 1;
+      await manager.save(product);
+
+      const item = manager.create(OrderItem, {
+        product,
+        quantity: 1,
+        unitPrice: product.price,
+      });
+
+      orderItems.push(item);
+    }
+
+    const order = manager.create(Order, {
+      status: OrderStatus.PENDING,
+      date: new Date(),
+      user,
+      items: orderItems,
+    });
+
+    return await manager.save(Order, order);
+  });
 };
