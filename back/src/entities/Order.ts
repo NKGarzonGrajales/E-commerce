@@ -2,14 +2,12 @@ import {
   Column,
   Entity,
   JoinColumn,
-  JoinTable,
-  ManyToMany,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { User } from "./User";
-import { Product } from "./Product";
-
+import { OrderItem } from "./OrderItem";
 // status: pending, approved, rejected etc...
 export enum OrderStatus {
   PENDING = "pending",
@@ -40,7 +38,6 @@ status: OrderStatus;
   @JoinColumn({ name: "userId" })
   user: User;
 
-  @ManyToMany(() => Product)
-  @JoinTable()
-  products: Product[];
+  @OneToMany(() => OrderItem, (item) => item.order)
+  items: OrderItem[];
 }
