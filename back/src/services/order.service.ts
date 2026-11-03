@@ -5,6 +5,7 @@ import { OrderItem } from "../entities/OrderItem";
 import { Product } from "../entities/Product";
 import { User } from "../entities/User";
 
+
 export const createOrderService = async (
   createOrderDto: CreateOrderDto,
   userId: number
@@ -50,9 +51,25 @@ export const createOrderService = async (
       status: OrderStatus.PENDING,
       date: new Date(),
       user,
-      items: orderItems,
     });
 
-    return await manager.save(Order, order);
+    const savedOrder = await manager.save(Order, order);
+
+    for (const item of orderItems) {
+      item.order = savedOrder;
+    }
+
+    await manager.save(OrderItem, orderItems);
+
+    const orderWithItems = await manager.findOne(Order, {
+      where: { id: savedOrder.id },
+      relations: ["user", "items", "items.product"],
+    });
+
+    if (!orderWithItems) {
+      throw new Error("Order could not be retrieved after creation");
+    }
+
+    return orderWithItems;
   });
 };

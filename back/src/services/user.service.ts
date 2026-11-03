@@ -66,7 +66,7 @@ export const loginUserService = async (
 
 export const getUserOrdersService = async (userId: number) => {
   return await OrderRepository.find({
-    relations: ["products"],
+    relations: ["items", "items.product"],
     where: { user: { id: userId } },
   });
 };
