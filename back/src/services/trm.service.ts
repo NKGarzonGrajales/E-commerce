@@ -9,6 +9,18 @@ interface TrmApiResponse{
 
 const TRM_API_URL = "https://www.datos.gov.co/resource/32sa-8pi3.json";
 
+export const findValidTRM = (
+  data: TrmApiResponse[],
+  todayDate: string
+) => {
+  return data.find((item) => {
+    const startDate = item.vigenciadesde.split("T")[0];
+    const endDate = item.vigenciahasta.split("T")[0];
+
+    return todayDate >= startDate && todayDate <= endDate;
+  });
+};
+
 export const getTRM = async (): Promise<number> => {
   const response = await fetch(TRM_API_URL);
 
@@ -21,18 +33,12 @@ export const getTRM = async (): Promise<number> => {
   if (data.length === 0) {
   throw new Error("No TRM data available");
 }
-const today = new Date();
 
-
-const validTRM = data.find((item) => {
-  const todayDate = new Date().toLocaleDateString("en-CA", {
+ const todayDate = new Date().toLocaleDateString("en-CA", {
   timeZone: "America/Bogota",
 });
-  const startDate = item.vigenciadesde.split("T")[0];
-  const endDate = item.vigenciahasta.split("T")[0];
 
-  return todayDate >= startDate && todayDate <= endDate;
-});
+const validTRM = findValidTRM(data, todayDate);
 
 if (!validTRM) {
   throw new Error("No TRM available for today");
