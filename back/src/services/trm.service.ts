@@ -25,7 +25,9 @@ const today = new Date();
 
 
 const validTRM = data.find((item) => {
-  const todayDate = new Date().toISOString().split("T")[0];
+  const todayDate = new Date().toLocaleDateString("en-CA", {
+  timeZone: "America/Bogota",
+});
   const startDate = item.vigenciadesde.split("T")[0];
   const endDate = item.vigenciahasta.split("T")[0];
 
