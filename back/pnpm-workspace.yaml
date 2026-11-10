@@ -1,4 +1,4 @@
 allowBuilds:
-  '@parcel/watcher': set this to true or false
+  '@parcel/watcher': false
   '@scarf/scarf': true
   bcrypt: true
